@@ -1,0 +1,39 @@
+.navbar{
+    display: grid;
+    grid-template-columns: 6% 90%;
+}
+
+.btn-db{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar{
+    width: 65px;
+    height: 55px;
+}
+
+.divAddDB{
+    margin: 20px;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+}
+
+.div-config{
+    width: 98%;
+    height: 100px;
+    border: solid;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.btn-delete{
+    width: 100px;
+    margin-top: 10px;
+}

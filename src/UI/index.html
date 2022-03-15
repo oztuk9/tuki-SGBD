@@ -1,14 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./Estilos/bootstrap.css">
+    <link rel="stylesheet" href="./Estilos/index.css">
+    <title>Tuki SGBD</title>
 </head>
+
 <body>
-    <h1>FUNCIONA!!!! XD</h1>
+
+    <nav class="navbar">
+        <button id="btn-Sidebar" class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+            aria-controls="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg></button>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tablas-tab" data-bs-toggle="tab" data-bs-target="#tablas" type="button"
+                    role="tab" aria-controls="home" aria-selected="false">Tablas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="config-tab" data-bs-toggle="tab" data-bs-target="#config"
+                    type="button" role="tab" aria-controls="profile" aria-selected="true">configuración</button>
+            </li>
+        </ul>
+    </nav>
+
+
+
+    <div id="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header">
+            <div class="offcanvas-title">
+                <h4>Bases de datos</h4>
+            </div>
+            <button id="close-canvas" class="btn btn-danger btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="divAddDB">
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addBD"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg></button>
+            <span>Nueva base de datos </span>
+        </div>
+        <div id="canvas-body" class="offcanvas-body">
+        </div>
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="tablas" role="tabpanel" aria-labelledby="home-tab">
+        </div>
+        <div class="tab-pane fade show active" id="config" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="div-config div-create-table">
+                <span>Eliminar base de datos</span>
+                <button class="btn btn-danger btn-delete">Eliminar</button>
+            </div>
+            <div class="div-config div-delete-db">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addBD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva base de datos</h5>
+                    <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../JS/sweetalert2.js"></script>
     <script src="../JS/index.js"></script>
 </body>
+
 </html>
