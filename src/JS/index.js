@@ -21,30 +21,24 @@ const nameNewDB = document.getElementById('name-new-db');
 
 /*Se ejecuta despues de que la pagina carga por completo*/
 
-const cleanDB = ()=> {
-   let DBselected = {
-      db:""
-   }
-   window.localStorage.setItem(DBselected ,JSON.stringify(DBselected))
-} 
-
 document.addEventListener('DOMContentLoaded', e => {
    if (storage.getStorage("DBselected") !== null) {
       console.log(storage.getStorage("DBselected"));
-
-      if (storage.getStorage("DBselected").db!="") {
+      if (storage.getStorage("DBselected").online == true) {
+         let DBselected = {
+            db:storage.getStorage("DBselected").db,
+            online: false
+         }
+         storage.setStorage("DBselected",DBselected)
          myTabContent.classList.remove('div-no-visible')
          divIndex.classList.add('div-no-visible')
-      }else{
-         myTabContent.classList.add('div-no-visible')
-         divIndex.classList.remove('div-no-visible')
       }
    }
    cargarDBs();
 })
 
 /*Variables*/
-var filtro = '1234567890qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM';//Caracteres validos nombre DB
+var filtro = '1234567890qwertyuiopasdfghjklñzxcvbnm_';//Caracteres validos nombre DB
 
 /*Funciones*/
 
@@ -67,7 +61,8 @@ divDB.addEventListener('click',e =>{
    if (e.delegateTarget!=undefined) {
       console.log(e.delegateTarget.id);
       let DBselected = {
-         db:e.delegateTarget.id
+         db:e.delegateTarget.id,
+         online: true
       }
       storage.setStorage("DBselected",DBselected)
       myTabContent.classList.remove('div-no-visible')
@@ -79,11 +74,15 @@ divDB.addEventListener('click',e =>{
 
 //Creacion de base de datos
 
-btnCreateDB.addEventListener('click', e => {
+const createDB = () => {
    let query = `CREATE DATABASE ${nameNewDB.value}`
    console.log(query);
    dbIndex.newDB(query,nameNewDB.value)
    nameNewDB.value=""
+}
+
+btnCreateDB.addEventListener('click', e => {
+   createDB();
 })
 
 //Cargar sidebar con las bases de datos
@@ -127,7 +126,6 @@ btnDeleteDB.addEventListener('click', e => {
       if (result.isConfirmed) {
          dbIndex.ejectedUsers(queryDesconnectedUsers);
          DROPDB();
-         cargarDBs();
       }
     })
 })
@@ -140,8 +138,9 @@ const DROPDB = async () =>{
    DBselected="";
    myTabContent.classList.add('div-no-visible')
    divIndex.classList.remove('div-no-visible')
-}
-
-module.exports = {
-   cleanDB
+   let DBselect = {
+      db:"",
+      online: false
+   }
+   storage.setStorage("DBselected",DBselect)
 }
