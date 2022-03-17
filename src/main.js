@@ -1,15 +1,15 @@
 const { BrowserWindow } = require('electron')
-const {app} = require('electron')
+const { app } = require('electron')
 
 require('../src/connection')
 require('electron-reload')(__dirname)
 
-let window;
+let windo;
 
 //Creacion de ventanas
 function createWindow() {
 
-    window = new BrowserWindow({
+    windo = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
@@ -21,11 +21,11 @@ function createWindow() {
         }
     })
 
-    window.loadFile('src/ui/index.html');
-    window.maximize();
-    window.once('ready-to-show', () => {
-        window.show();
-      })
+    windo.loadFile('src/ui/index.html');
+    windo.maximize();
+    windo.once('ready-to-show', () => {
+        windo.show();
+    });
 }
 
 app.allowRendererProcessReuse = false;

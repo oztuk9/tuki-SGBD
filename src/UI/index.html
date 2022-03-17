@@ -15,9 +15,9 @@
     <!--Barra de navegacion-->
 
     <nav class="navbar">
-        <button id="btn-Sidebar" class="btn btn-outline-primary sidebar" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-            aria-controls="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                class="bi bi-list" viewBox="0 0 16 16">
+        <button id="btn-Sidebar" class="btn btn-outline-primary sidebar" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas" aria-controls="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
             </svg></button>
@@ -33,7 +33,7 @@
         </ul>
     </nav>
 
-<!--Sidebar bases de datos-->
+    <!--Sidebar bases de datos-->
 
     <div id="offcanvas" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
@@ -58,17 +58,22 @@
 
     <!--Informacion principal-->
 
-    <div id="div-index" ><H3>Ninguna base de datos a sido seleccionada</H3></div>
+    <div id="div-index">
+        <H3>Ninguna base de datos a sido seleccionada</H3>
+    </div>
 
     <div class="tab-content div-no-visible" id="myTabContent">
         <div class="tab-pane fade" id="tablas" role="tabpanel" aria-labelledby="home-tab">
-            <div class="div-config div-delete-db">
+            <div class="div-create-table">
                 <span>Crear Tabla</span>
-                <button class="btn btn-primary crud-general">Crear</button>
+                <div class="set-data-name">
+                    <button class="btn btn-primary crud-general btn-create-table" onclick="location.href='./tablas.html'">Crear</button>
+                </div>
             </div>
         </div>
+
         <div class="tab-pane fade show active" id="config" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="div-config div-create-table">
+            <div class="div-delete-db">
                 <span>Eliminar base de datos</span>
                 <button id="deleteDB" class="btn btn-danger crud-general">Eliminar</button>
             </div>
@@ -96,7 +101,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn-create-database" type="button" class="btn btn-success" data-bs-dismiss="modal">Crear</button>
+                    <button id="btn-create-database" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Crear</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 const connection = require('../connection');
 const dbIndex = require('../SQL/dbIndex')
+const storage = require('../JS/local')
 
 /*Elementos*/
 
@@ -18,13 +19,31 @@ const btnDeleteDB = document.getElementById('deleteDB');
 
 const nameNewDB = document.getElementById('name-new-db');
 
+/*Se ejecuta despues de que la pagina carga por completo*/
+
+const cleanDB = ()=> {
+   let DBselected = {
+      db:""
+   }
+   window.localStorage.setItem(DBselected ,JSON.stringify(DBselected))
+} 
+
 document.addEventListener('DOMContentLoaded', e => {
+   if (storage.getStorage("DBselected") !== null) {
+      console.log(storage.getStorage("DBselected"));
+
+      if (storage.getStorage("DBselected").db!="") {
+         myTabContent.classList.remove('div-no-visible')
+         divIndex.classList.add('div-no-visible')
+      }else{
+         myTabContent.classList.add('div-no-visible')
+         divIndex.classList.remove('div-no-visible')
+      }
+   }
    cargarDBs();
 })
 
 /*Variables*/
-
-var DBselected ="";
 var filtro = '1234567890qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM';//Caracteres validos nombre DB
 
 /*Funciones*/
@@ -47,7 +66,10 @@ divDB.addEventListener('click',e =>{
    console.log(e.delegateTarget);
    if (e.delegateTarget!=undefined) {
       console.log(e.delegateTarget.id);
-      DBselected=e.delegateTarget.id;
+      let DBselected = {
+         db:e.delegateTarget.id
+      }
+      storage.setStorage("DBselected",DBselected)
       myTabContent.classList.remove('div-no-visible')
       divIndex.classList.add('div-no-visible')
    }else{
@@ -92,6 +114,7 @@ const cargarDBs = async () => {
 }
 
 btnDeleteDB.addEventListener('click', e => {
+   let DBselected = storage.getStorage("DBselected").db
    let queryUsersConnected = `SELECT COUNT(*) AS users_online FROM pg_stat_activity WHERE datname='${DBselected}'`
    let queryDesconnectedUsers = `SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname='${DBselected}' AND procpid<>pg_backend_pid()`
    Swal.fire({
@@ -115,4 +138,8 @@ const DROPDB = async () =>{
    DBselected="";
    myTabContent.classList.add('div-no-visible')
    divIndex.classList.remove('div-no-visible')
+}
+
+module.exports = {
+   cleanDB
 }
