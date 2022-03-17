@@ -115,6 +115,7 @@ const cargarDBs = async () => {
 
 btnDeleteDB.addEventListener('click', e => {
    let DBselected = storage.getStorage("DBselected").db
+   console.log(DBselected);
    let queryUsersConnected = `SELECT COUNT(*) AS users_online FROM pg_stat_activity WHERE datname='${DBselected}'`
    let queryDesconnectedUsers = `SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname='${DBselected}' AND procpid<>pg_backend_pid()`
    Swal.fire({
@@ -132,6 +133,7 @@ btnDeleteDB.addEventListener('click', e => {
 })
 
 const DROPDB = async () =>{
+   let DBselected = storage.getStorage("DBselected").db
    let query = `DROP DATABASE IF EXISTS ${DBselected}`
    console.log(query);
    dbIndex.deleteDB(query,DBselected);
