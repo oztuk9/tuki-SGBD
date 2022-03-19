@@ -21,10 +21,18 @@ const nameNewDB = document.getElementById('name-new-db');
 
 /*Se ejecuta despues de que la pagina carga por completo*/
 
+
+
+/*Variables*/
+var filtro = '1234567890qwertyuiopasdfghjklñzxcvbnm_';//Caracteres validos nombre DB
+
+/*Funciones*/
+
 document.addEventListener('DOMContentLoaded', e => {
    if (storage.getStorage("DBselected") !== null) {
       console.log(storage.getStorage("DBselected"));
       if (storage.getStorage("DBselected").online == true) {
+         encabezado();
          let DBselected = {
             db:storage.getStorage("DBselected").db,
             online: false
@@ -37,10 +45,11 @@ document.addEventListener('DOMContentLoaded', e => {
    cargarDBs();
 })
 
-/*Variables*/
-var filtro = '1234567890qwertyuiopasdfghjklñzxcvbnm_';//Caracteres validos nombre DB
+const encabezado = () => {
+   encabezadoDB.innerHTML = ``
+   encabezadoDB.innerHTML += `${storage.getStorage("DBselected").db}`
+}
 
-/*Funciones*/
 
 //Eliminar espacios al teclear el nombre de la base de datos
 
@@ -67,6 +76,7 @@ divDB.addEventListener('click',e =>{
       storage.setStorage("DBselected",DBselected)
       myTabContent.classList.remove('div-no-visible')
       divIndex.classList.add('div-no-visible')
+      encabezado();
    }else{
       console.log("No se a seleccionado una base de datos");
    }

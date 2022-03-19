@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Estilos/bootstrap.css">
+    <link rel="stylesheet" href="./Estilos/tablas.css">
     <title>Document</title>
 </head>
 
@@ -13,10 +14,25 @@
 
     <!--Barra de navegacion-->
     <nav class="navbar">
-        <button id="backIndex" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+        <button id="backIndex" class="back-button btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
           </svg></button>
     </nav>
+    <h2 id="encabezadoDB" class="nameDBheat"></h2>
+    <div class="div-name-table">
+        <span>Nombre de la tabla: </span>
+        <input class="form-control nombre-db" type="text">
+        <span class="texto-nueva-tupla">Nueva tupla</span>
+        <button class="btn btn-outline-success btn-add-tupla"><svg
+            xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+            class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+            <path
+                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+        </svg></button>
+    </div>
+    <div class="campos div-name-table">
+
+    </div>
     <script src="../JS/tablas.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../JS/sweetalert2.js"></script>
