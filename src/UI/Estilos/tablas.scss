@@ -25,7 +25,6 @@ div{
   padding-left: 100px;
   padding-right: 100px;
   padding: 10px;
-  border-style: outset;
 }
 
 .nameDBheat {
@@ -39,9 +38,9 @@ div{
 }
 
 .div-name-table {
+    @include box();
   display: grid;
   grid-template-columns: 15% 50% 30% 10%;
-
 }
 
 .btn-add-registro {
@@ -72,4 +71,15 @@ div{
 .span-campo{
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.radio-primary-key{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.input-campo{
+    border-radius: 10px;
+    border: 2px solid rgb(175, 180, 182);
+    width: 150px;
 }

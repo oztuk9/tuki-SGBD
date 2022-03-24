@@ -5,10 +5,7 @@ body {
 
 nav {
   position: fixed;
-  -webkit-box-orient: initial;
-  -webkit-box-direction: initial;
-      -ms-flex-direction: initial;
-          flex-direction: initial;
+  flex-direction: initial;
 }
 
 div {
@@ -18,7 +15,6 @@ div {
   padding-left: 100px;
   padding-right: 100px;
   padding: 10px;
-  border-style: outset;
 }
 
 .nameDBheat {
@@ -27,17 +23,20 @@ div {
 }
 
 .navbar {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 6% 90%;
-      grid-template-columns: 6% 90%;
+  grid-template-columns: 6% 90%;
 }
 
 .div-name-table {
-  display: -ms-grid;
+  width: 100%;
+  margin: 10px;
+  margin-left: 0px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-style: outset;
   display: grid;
-  -ms-grid-columns: 15% 50% 30% 10%;
-      grid-template-columns: 15% 50% 30% 10%;
+  grid-template-columns: 15% 50% 30% 10%;
 }
 
 .btn-add-registro {
@@ -46,11 +45,8 @@ div {
 }
 
 .texto-nueva-registro {
-  -ms-grid-column-align: end;
-      justify-self: end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-self: end;
+  align-items: center;
   margin-right: 10px;
 }
 
@@ -59,13 +55,8 @@ div {
 }
 
 .campos {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .input-nombre-campo {
@@ -77,4 +68,14 @@ div {
   margin-right: 20px;
   margin-left: 20px;
 }
-/*# sourceMappingURL=tablas.css.map */
+
+.radio-primary-key {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.input-campo {
+  border-radius: 10px;
+  border: 2px solid #afb4b6;
+  width: 150px;
+}/*# sourceMappingURL=tablas.css.map */

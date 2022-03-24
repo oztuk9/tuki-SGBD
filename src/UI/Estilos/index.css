@@ -6,10 +6,8 @@ body {
 }
 
 .navbar {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 6% 90%;
-      grid-template-columns: 6% 90%;
+  grid-template-columns: 6% 90%;
 }
 
 .btn-db {
@@ -23,13 +21,8 @@ body {
 }
 
 .navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
 .div-delete-db {
@@ -37,13 +30,8 @@ body {
   height: 100px;
   margin: 10px;
   margin-left: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   padding: 10px;
   border-style: outset;
 }
@@ -53,25 +41,15 @@ body {
   height: 100px;
   margin: 10px;
   margin-left: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   padding: 10px;
   border-style: outset;
 }
 
 .set-data-name {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   padding-top: 5px;
 }
 
@@ -91,5 +69,4 @@ body {
 
 .div-no-visible {
   display: none;
-}
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
