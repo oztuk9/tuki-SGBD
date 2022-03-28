@@ -18,14 +18,6 @@ nav {
   flex-direction: initial;
 }
 
-div{
-  width: 100%;
-  margin: 10px;
-  margin-left: 0px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding: 10px;
-}
 
 .nameDBheat {
   left: 0;
@@ -58,6 +50,15 @@ div{
     width: 60px;
 }
 
+.div-campos-tabla{
+  width: 100%;
+  margin: 10px;
+  margin-left: 0px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding: 10px;
+}
+
 .campos{
   display: flex;
   flex-direction: column;
@@ -69,13 +70,14 @@ div{
 }
 
 .span-campo{
-  margin-right: 20px;
+  margin-right: 5px;
   margin-left: 20px;
 }
 
 .radio-primary-key{
     margin-right: 20px;
-    margin-left: 20px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
 .input-campo{

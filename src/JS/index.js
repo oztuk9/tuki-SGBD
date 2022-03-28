@@ -1,5 +1,6 @@
 const connection = require('../connection');
 const dbIndex = require('../SQL/dbIndex')
+const dbTablas = require('../SQL/dbTablas')
 const storage = require('../JS/local')
 
 /*Elementos*/
@@ -9,6 +10,7 @@ const storage = require('../JS/local')
 const divDB = document.getElementById('canvas-body');
 const myTabContent = document.getElementById('myTabContent')
 const divIndex = document.getElementById('div-index')
+const divTables = document.getElementById('div-tables')
 
 /*Botones*/
 
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', e => {
       console.log(storage.getStorage("DBselected"));
       if (storage.getStorage("DBselected").online == true) {
          encabezado();
+         showTables();
          let DBselected = {
             db:storage.getStorage("DBselected").db,
             online: false
@@ -77,6 +80,7 @@ divDB.addEventListener('click',e =>{
       myTabContent.classList.remove('div-no-visible')
       divIndex.classList.add('div-no-visible')
       encabezado();
+      showTables();
    }else{
       console.log("No se a seleccionado una base de datos");
    }
@@ -85,10 +89,19 @@ divDB.addEventListener('click',e =>{
 //Creacion de base de datos
 
 const createDB = () => {
-   let query = `CREATE DATABASE ${nameNewDB.value}`
-   console.log(query);
-   dbIndex.newDB(query,nameNewDB.value)
-   nameNewDB.value=""
+   if (nameNewDB.value=="") {
+      Toast.fire({
+         icon: 'error',
+         title: 'Coloca el nombre de la base de datos',
+         background: 'FFFF',
+         width: 420
+      })
+   }else{
+      let query = `CREATE DATABASE ${nameNewDB.value}`
+      console.log(query);
+      dbIndex.newDB(query,nameNewDB.value)
+      nameNewDB.value=""
+   }
 }
 
 btnCreateDB.addEventListener('click', e => {
@@ -132,7 +145,6 @@ btnDeleteDB.addEventListener('click', e => {
       showCancelButton: true,
       confirmButtonText: 'Siiuu',
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
          dbIndex.ejectedUsers(queryDesconnectedUsers);
          DROPDB();
@@ -153,4 +165,24 @@ const DROPDB = async () =>{
       online: false
    }
    storage.setStorage("DBselected",DBselect)
+   encabezado();
+}
+
+const showTables = async () => {
+   divTables.innerHTML = "";
+   console.log("Entro a la funcion showTables");
+   let query= `select table_name from information_schema.tables where table_schema='public';`
+   const res = await dbTablas.selectTables(query)
+   for (let i = 0; i < res.rowCount; i++) {
+      let nuevoCampo = document.createElement("div")
+      nuevoCampo.setAttribute("id", "campo" + i)
+      nuevoCampo.setAttribute("class", "div-tablas")
+  
+      let spanNombre = document.createElement("span")
+      spanNombre.setAttribute("class", "span-campo span-nombre" + i)
+      spanNombre.textContent = res.rows[i].table_name
+
+      divTables.insertAdjacentElement("beforeend", nuevoCampo)
+      nuevoCampo.insertAdjacentElement("beforeend", spanNombre)
+   }
 }

@@ -72,3 +72,14 @@ body{
 .div-no-visible{
     display: none;
 }
+
+.div-style{
+    width: 100%;
+    @include box;
+}
+
+.div-tablas{
+    padding: 5px;
+    border: 1px solid rgb(175, 180, 182);
+    border-collapse: collapse;
+}
