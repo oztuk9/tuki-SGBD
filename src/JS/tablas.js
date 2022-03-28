@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
 
 backIndex.addEventListener('click', e => {
-    console.log('Evento accionado');
     let DBselected = {
         db: storage.getStorage("DBselected").db,
         online: true
@@ -151,7 +150,6 @@ const crearCampos = () => {
     radioPrimaryKey.setAttribute("value", count)
 
     let btnEliminar = document.createElement("button")
-    btnEliminar.setAttribute("id", "boton-eliminar" + count)
     btnEliminar.setAttribute("class", "btn btn-danger")
     btnEliminar.setAttribute("id", count)
     btnEliminar.textContent = "Eliminar"

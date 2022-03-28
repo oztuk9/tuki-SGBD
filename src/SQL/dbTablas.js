@@ -33,7 +33,31 @@ const selectTables = async (query) => {
     }
 }
 
+const DROPTables = async (query,tabla) => {
+    try {
+        await connection.connectionEspecificDB(12345,getStorage("DBselected").db).query(query)
+        showTables();
+        Toast.fire({
+            icon: 'success',
+            title: 'Se ha eliminado la Tabla: '+tabla,
+            background: 'FFFF',
+            width: 420,
+            timer: 4000,
+        })
+    } catch (error) {
+        Toast.fire({
+            icon: 'error',
+            title: 'Error al eliminar la tabla',
+            text: error,
+            background: 'FFFF',
+            width: 420,
+            timer: 4000,
+        })
+    }
+}
+
 module.exports = {
     newTable,
-    selectTables
+    selectTables,
+    DROPTables
 }
