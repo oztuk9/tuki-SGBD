@@ -1,0 +1,109 @@
+body {
+  padding: 20px;
+}
+
+.div-agregar-campo {
+  text-align: end;
+}
+
+.div-campos {
+  width: 100%;
+  margin: 10px;
+  margin-left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 10px;
+  border-style: outset;
+}
+
+.tabla {
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+thead {
+  background-color: #369681;
+  border-bottom: solid 5px #0f362d;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+tr:hover td {
+  background-color: #369681;
+  color: white;
+  cursor: pointer;
+}
+
+.campos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.div-name-table {
+  width: 100%;
+  margin: 10px;
+  margin-left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 10px;
+  border-style: outset;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 15% 50% 30% 10%;
+      grid-template-rows: 15% 50% 30% 10%;
+}
+
+.span-campo {
+  margin-right: 5px;
+  margin-left: 8px;
+}
+
+.input-campo {
+  border-radius: 10px;
+  border: 2px solid #afb4b6;
+  width: 120px;
+}
+
+.span-option-table {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.div-select-fk {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50%,50%;
+      grid-template-columns: 50%,50%;
+}
+
+.select-foreign-key {
+  border-radius: 10px;
+  border: 2px solid #afb4b6;
+  width: 250px;
+}
+/*# sourceMappingURL=editar_tablas.css.map */

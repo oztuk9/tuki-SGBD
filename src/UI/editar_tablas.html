@@ -1,22 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Estilos/bootstrap.css">
+    <link rel="stylesheet" href="./Estilos/editar_tablas.css">
     <title>Editar Tablas</title>
 </head>
+
 <body>
-        <!--Barra de navegacion-->
-        <nav class="navbar">
-            <button id="backIndex" class="back-button btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-              </svg></button>
-        </nav>
-        <h2 id="encabezadoDB" class="nameDBheat"></h2>
-        <script src="../JS/editar_tablas.js"></script>
-        <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../JS/sweetalert2.js"></script>
+    <!--Barra de navegacion-->
+    <nav class="navbar">
+        <button id="backIndex" class="back-button btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg"
+                width="30" height="30" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
+            </svg></button>
+    </nav>
+    <!--Encabezado-->
+    <h2 id="encabezadoDB" class="nameDBheat"></h2>
+    <div class="div-agregar-campo" data-bs-toggle="modal" data-bs-target="#new-foreign-key">
+        <span class="span-option-table">Agregar foreign key</span>
+        <button class="btn btn-outline-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill"
+                viewBox="0 0 16 16">
+                <path
+                    d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+            </svg>
+        </button>
+        <span class="span-option-table">Agregar campo</span>
+        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addCampo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+            </svg>
+        </button>
+    </div>
+    <!--Campos tabla-->
+    <div class="div-campos">
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo de dato</th>
+                    <th>Longitud/valores</th>
+                    <th>Null</th>
+                    <th>Default</th>
+                    <th>Primary key</th>
+                    <th>Foreign key</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+    <!--Modal nuevo campo-->
+
+    <div class="modal fade" id="addCampo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo campo</h5>
+                    <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="campos div-name-table">
+
+                            <div id="campo" class="div-campos-tabla"><span
+                                    class="span-campo span-nombre">Nombre</span><input id="input" class="input-campo">
+                                <span id="span-tipo-dato" class="span-campo">Tipo de dato</span>
+                                <select id="selectDato" class="input-campo">
+                                    <option value=""></option>
+                                    <option value="serial">serial</option>
+                                    <option value="boolean">boolean</option>
+                                    <option value="varchar">varchar</option>
+                                    <option value="char">char</option>
+                                    <option value="text">text</option>
+                                    <option value="smallint">smallint</option>
+                                    <option value="int">int</option>
+                                    <option value="bigint">bigint</option>
+                                    <option value="numeric">numeric</option>
+                                    <option value="real">real</option>
+                                    <option value="double precision">double precision</option>
+                                    <option value="date">date</option>
+                                    <option value="time">time</option>
+                                    <option value="timestamp">timestamp</option>
+                                </select>
+                                <span id="span-lv" class="span-campo">Longitud/Valores</span> <input id="inputVL"
+                                    class="input-campo">
+                                <span id="span-null" class="span-campo">Not null</span><input id="checkNull"
+                                    class="input-check-null" type="checkbox">
+                                <span id="span-default" class="span-campo">Default</span><input id="inputDefault"
+                                    class="input-campo">
+                                <span class="span-campo span-radio">Primary key</span><input id="primarykey"
+                                    class="radio-primary-key" type="checkbox" name="primarykey" value="0">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-add-campo" type="button" class="btn btn-success">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal agregar foreign key-->
+
+    <div class="modal fade " id="new-foreign-key" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva foreign key</h5>
+                    <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 div-select-fk">
+                            <label for="recipient-name" class="col-form-label">Tabla foranea</label>
+                            <select id="tablaForanea" class="select-foreign-key"></select>
+                        </div>
+                        <div class="mb-3 div-select-fk">
+                            <label for="recipient-name" class="col-form-label">Campo</label>
+                            <select id="campoForaneo" class="select-foreign-key"></select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-add-foreign-key" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/editar_tablas.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../JS/sweetalert2.js"></script>
 </body>
+
 </html>

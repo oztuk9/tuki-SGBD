@@ -181,12 +181,14 @@ const showTables = async () => {
       nuevoCampo.setAttribute("class", "div-tablas")
 
       let spanNombre = document.createElement("span")
-      spanNombre.setAttribute("class", "span-campo" + i)
+      spanNombre.setAttribute("class", "span-campo")
       spanNombre.setAttribute("id", "span-nombre" + i)
       spanNombre.textContent = res.rows[i].table_name
+      
+      let divBtn = document.createElement("div")
 
       let btnEliminar = document.createElement("button")
-      btnEliminar.setAttribute("class", "btn btn-danger")
+      btnEliminar.setAttribute("class", "btn btn-danger btn-table")
       btnEliminar.setAttribute("id", i)
       btnEliminar.textContent = "Eliminar"
       btnEliminar.addEventListener('click', e => {
@@ -201,7 +203,7 @@ const showTables = async () => {
       })
 
       let btnEditar = document.createElement("button")
-      btnEditar.setAttribute("class", "btn btn-primary")
+      btnEditar.setAttribute("class", "btn btn-primary btn-table")
       btnEditar.setAttribute("id", "edit"+i)
       btnEditar.textContent = "Editar"
       btnEditar.addEventListener('click', e => {
@@ -218,8 +220,9 @@ const showTables = async () => {
 
       divTables.insertAdjacentElement("beforeend", nuevoCampo)
       nuevoCampo.insertAdjacentElement("beforeend", spanNombre)
-      nuevoCampo.insertAdjacentElement("beforeend", btnEliminar)
-      nuevoCampo.insertAdjacentElement("beforeend", btnEditar)
+      nuevoCampo.insertAdjacentElement("beforeend", divBtn)
+      divBtn.insertAdjacentElement("beforeend", btnEliminar)
+      divBtn.insertAdjacentElement("beforeend", btnEditar)
    }
 }
 
