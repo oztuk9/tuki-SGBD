@@ -314,4 +314,5 @@ crearForeignKey.addEventListener('click', e => {
         console.log(queryAddForeignKey);
         dbEditarTablas.addForeignKey(queryAddForeignKey)
     })
+    cargarCamposTabla()
 })
