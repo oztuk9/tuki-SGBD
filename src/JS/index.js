@@ -173,7 +173,7 @@ const DROPDB = async () => {
 const showTables = async () => {
    divTables.innerHTML = "";
    console.log("Entro a la funcion showTables");
-   let query = `select table_name from information_schema.tables where table_schema='public';`
+   let query = `select table_name from information_schema.tables where table_schema='public' AND table_type='BASE TABLE'`
    const res = await dbTablas.selectTables(query)
    for (let i = 0; i < res.rowCount; i++) {
       let nuevoCampo = document.createElement("div")

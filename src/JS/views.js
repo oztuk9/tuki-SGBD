@@ -27,9 +27,10 @@ openView.addEventListener('click', e => {
 })
 
 const cargarTablas = async () => {
+    selectCampoWhere.innerHTML = "";
     selectTablas.innerHTML = ""
     selectTablas.appendChild(optionVacio);
-    const query = `select table_name from information_schema.tables where table_schema='public';`
+    const query = `select table_name from information_schema.tables where table_schema='public' AND table_type='BASE TABLE';`
     const tablas = await dbView.returnConsult(query)
     console.log(tablas.rows.length);
     tablas.rows.forEach(e => {
@@ -58,10 +59,26 @@ selectTablas.addEventListener('change',async e => {
 })
 
 btnCreateView.addEventListener('click', e =>{
+    inputNombreView = document.getElementById('inputNombreView')
     select = document.getElementById('inputCamposView')
     selectOperadorRelacional = document.getElementById('selectOperadorRelacional')
     inputCondicionView = document.getElementById('inputCondicionView')
-    if (select.value==""||selectOperadorRelacional.value=="") {
-        
+    if (select.value==""||selectTablas.value==""||inputNombreView.value=="") {
+        Toast.fire({
+            icon: 'info',
+            title: 'Llene los campos necesarios',
+            background: 'FFFF',
+            width: 420,
+            timer: 4000,
+        })
+    }else{
+        let query = ``
+        if (selectCampoWhere.value=="") {
+            query = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value}`
+        }else{
+            query = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value} WHERE ${selectCampoWhere.value} ${selectOperadorRelacional.value} ${inputCondicionView.value}`
+        }
+        console.log(query);
+        dbView.consult(query)
     }
 })
