@@ -17,20 +17,24 @@
     <nav class="navbar">
         <div>
             <button id="btn-Sidebar" class="btn btn-outline-primary sidebar" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvas" aria-controls="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="40"
-                height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-            </svg></button>
+                data-bs-target="#offcanvas" aria-controls="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                    height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg></button>
         </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="views-tab" data-bs-toggle="tab" data-bs-target="#views" type="button"
+                    role="tab" aria-controls="views" aria-selected="false">Views</button>
+            </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="tablas-tab" data-bs-toggle="tab" data-bs-target="#tablas" type="button"
                     role="tab" aria-controls="tablas" aria-selected="false">Tablas</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="config-tab" data-bs-toggle="tab" data-bs-target="#config"
-                    type="button" role="tab" aria-controls="config" aria-selected="true">configuración</button>
+                    type="button" role="tab" aria-controls="config" aria-selected="true">Configuración</button>
             </li>
         </ul>
 
@@ -68,11 +72,18 @@
     </div>
 
     <div class="tab-content div-no-visible" id="myTabContent">
+        <div class="tab-pane fade" id="views" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="div-delete-db">
+                <span>Crear View</span>
+                <button id="createView" class="btn btn-primary crud-general" data-bs-toggle="modal" data-bs-target="#new-view">Crear</button>
+            </div>
+        </div>
         <div class="tab-pane fade" id="tablas" role="tabpanel" aria-labelledby="home-tab">
             <div class="div-create-table">
                 <span>Crear Tabla</span>
                 <div class="set-data-name">
-                    <button class="btn btn-primary crud-general btn-create-table" onclick="location.href='./tablas.html'">Crear</button>
+                    <button class="btn btn-primary crud-general btn-create-table"
+                        onclick="location.href='./tablas.html'">Crear</button>
                 </div>
             </div>
             <div class="div-style">
@@ -118,11 +129,51 @@
         </div>
     </div>
 
+    <!--Modal new View-->
+
+    <div class="modal fade " id="new-view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva vista</h5>
+                    <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 div-select-fk">
+                            <label for="recipient-name" class="col-form-label">SELECT</label>
+                            <input type="text" id="inputCamposView" class="input-data">
+                            <label for="recipient-name" class="col-form-label">FROM</label>
+                            <select id="selectTabla" class="input-data"></select>
+                            <label for="recipient-name" class="col-form-label">WHERE</label>
+                            <select id="selectCampoWhere" class="input-data"></select>
+                            <select id="selectOperadorRelacional" class="input-data">
+                                <option value="=">=</option>
+                                <option value="<>"><></option>
+                                <option value=">">></option>
+                                <option value="<"><</option>
+                                <option value=">=">>=</option>
+                                <option value="<="><=</option>
+                            </select>
+                            <input type="text" id="inputCondicionView" class="input-data">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-create-view" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Sripts -->
 
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../JS/sweetalert2.js"></script>
     <script src="../JS/index.js"></script>
+    <script src="../JS/views.js"></script>
 </body>
 
 </html>

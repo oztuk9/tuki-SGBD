@@ -249,6 +249,7 @@ const obtenerDatos = () => {
         queryCrearTabla += `${nombreCampo.value} ${selectDato.value}${LV}${notNull}${dfData}${primarykey}`
         i + 1 < posiciones.length ? queryCrearTabla += `,` : queryCrearTabla += `);`
 
+        console.log("Entro al else si el nombre de la tabla no esta vacio");
         if (nombreCampo.value == "" || nombreDatosFull == false) {
             nombreDatosFull = false
         } else {
@@ -259,7 +260,6 @@ const obtenerDatos = () => {
 
     });
     if (posiciones.length == 0) {
-        console.log('Entro al if si la cantidad de camposes iguala 0');
         queryCrearTabla += `);`
     }
     if (nombreTabla == "") {

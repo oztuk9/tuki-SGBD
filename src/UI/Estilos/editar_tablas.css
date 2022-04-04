@@ -10,13 +10,8 @@ body {
   width: 100%;
   margin: 10px;
   margin-left: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   padding: 10px;
   border-style: outset;
 }
@@ -50,32 +45,20 @@ tr:hover td {
 }
 
 .campos {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .div-name-table {
   width: 100%;
   margin: 10px;
   margin-left: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   padding: 10px;
   border-style: outset;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 15% 50% 30% 10%;
-      grid-template-rows: 15% 50% 30% 10%;
+  grid-template-rows: 15% 50% 30% 10%;
 }
 
 .span-campo {
@@ -95,15 +78,12 @@ tr:hover td {
 }
 
 .div-select-fk {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50%,50%;
-      grid-template-columns: 50%,50%;
+  grid-template-columns: 50%, 50%;
 }
 
 .select-foreign-key {
   border-radius: 10px;
   border: 2px solid #afb4b6;
   width: 250px;
-}
-/*# sourceMappingURL=editar_tablas.css.map */
+}/*# sourceMappingURL=editar_tablas.css.map */
