@@ -70,20 +70,4 @@ tr:hover td {
   border-radius: 10px;
   border: 2px solid #afb4b6;
   width: 120px;
-}
-
-.span-option-table {
-  margin-left: 20px;
-  margin-right: 5px;
-}
-
-.div-select-fk {
-  display: grid;
-  grid-template-columns: 50%, 50%;
-}
-
-.select-foreign-key {
-  border-radius: 10px;
-  border: 2px solid #afb4b6;
-  width: 250px;
-}/*# sourceMappingURL=editar_tablas.css.map */
+}/*# sourceMappingURL=mostrarView.css.map */
