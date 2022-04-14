@@ -229,6 +229,6 @@ const showTables = async () => {
 }
 
 const eliminarTabla = (tabla) => {
-   query = `DROP TABLE IF EXISTS ${tabla}`;
+   query = `DROP TABLE IF EXISTS ${tabla} CASCADE`;
    dbTablas.DROPTables(query, tabla)
 }

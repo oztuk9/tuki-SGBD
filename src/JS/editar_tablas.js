@@ -154,7 +154,7 @@ const comprobarKey = (nombre,key) => {
 tbody.addEventListener('click', e => {
     let nombreCampo = e.path[0].id
     if (nombreCampo != "") {
-        let query = `alter table ${tablaName} drop ${nombreCampo}`
+        let query = `alter table ${tablaName} drop ${nombreCampo} CASCADE`
         dbEditarTablas.DROPCampo(query)
         console.log("Preciono el boton");
     } else {

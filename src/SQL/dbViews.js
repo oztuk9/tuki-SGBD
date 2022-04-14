@@ -65,9 +65,31 @@ const DROPViews = async (query,tabla) => {
     }
 }
 
+const selectViewsFields = async (query) => {
+    try {
+        console.log(getStorage("DBselected").db);
+        const res = await connection.connectionEspecificDB(12345,getStorage("DBselected").db).query(query);   
+        return res
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const selectViewData = async (query) => {
+    try {
+        console.log(getStorage("DBselected").db);
+        const res = await connection.connectionEspecificDB(12345,getStorage("DBselected").db).query(query);   
+        return res
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     returnConsult,
     consult,
     selectViews,
-    DROPViews
+    DROPViews,
+    selectViewsFields,
+    selectViewData
 }
