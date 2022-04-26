@@ -168,6 +168,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button id="btn-preview" class="btn btn-primary crud-general">Mostrar View</button>
                     <button id="btn-create-view" type="button" class="btn btn-success"
                         data-bs-dismiss="modal">Crear</button>
                 </div>
@@ -175,6 +176,32 @@
         </div>
     </div>
 
+    
+    <div class="modal fade " id="show-view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Previsualisacion de la vista</h5>
+                    <button type="button" id="closeModalView" class="btn-close btn-danger"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <table class="tabla">
+                            <thead>
+                                <tr id="trHead">
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-create-view-select" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--Sripts -->
 
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

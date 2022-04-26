@@ -83,7 +83,7 @@ body {
 
 .div-tablas {
   padding: 5px;
-  border: 1px solid #afb4b6;
+  border: 1px solid rgb(175, 180, 182);
   border-collapse: collapse;
 }
 
@@ -99,7 +99,7 @@ body {
   margin-right: 5px;
   width: 150px;
   border-radius: 10px;
-  border: 2px solid #afb4b6;
+  border: 2px solid rgb(175, 180, 182);
 }
 
 #selectOperadorRelacional {
@@ -112,4 +112,37 @@ body {
 
 #inputNombreView {
   width: 200px;
+}
+
+.tabla {
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+thead {
+  background-color: #369681;
+  border-bottom: solid 5px #0f362d;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+tr:hover td {
+  background-color: #369681;
+  color: white;
+  cursor: pointer;
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
 }/*# sourceMappingURL=index.css.map */

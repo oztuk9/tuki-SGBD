@@ -19,6 +19,14 @@ const selectCampoWhere = document.getElementById('selectCampoWhere')
 
 const openView = document.getElementById('createView')
 const btnCreateView = document.getElementById('btn-create-view')
+const btnCreateViewSelect= document.getElementById('btn-create-view-select')
+const btnPreview = document.getElementById('btn-preview')
+const closeModalView = document.getElementById('closeModalView')
+
+/*Variables*/
+const trHead = document.getElementById('trHead')
+const tbody = document.getElementById('tbody')
+let queryCreateView = ``
 
 
 document.addEventListener('DOMContentLoaded', e => {
@@ -61,7 +69,9 @@ selectTablas.addEventListener('change', async e => {
     });
 })
 
-btnCreateView.addEventListener('click', e => {
+//Get data view
+
+const obtenerDatos = (action) => {
     inputNombreView = document.getElementById('inputNombreView')
     select = document.getElementById('inputCamposView')
     selectOperadorRelacional = document.getElementById('selectOperadorRelacional')
@@ -75,15 +85,113 @@ btnCreateView.addEventListener('click', e => {
             timer: 4000,
         })
     } else {
-        let query = ``
+
+        let previewSelect = ``
         if (selectCampoWhere.value == "") {
-            query = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value}`
+            queryCreateView = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value}`
+            previewSelect = `SELECT ${select.value} FROM ${selectTablas.value}`
         } else {
-            query = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value} WHERE ${selectCampoWhere.value} ${selectOperadorRelacional.value} ${inputCondicionView.value}`
+            queryCreateView = `CREATE VIEW ${inputNombreView.value} AS SELECT ${select.value} FROM ${selectTablas.value} WHERE ${selectCampoWhere.value} ${selectOperadorRelacional.value} ${inputCondicionView.value}`
+            previewSelect = `SELECT ${select.value} FROM ${selectTablas.value} WHERE ${selectCampoWhere.value} ${selectOperadorRelacional.value} ${inputCondicionView.value}`
         }
-        console.log(query);
-        dbView.consult(query)
+        if (action == true) {
+            console.log(queryCreateView);
+            dbView.consult(queryCreateView)
+            queryCreateView = ``
+        } else {
+            const modalPreview = document.getElementById('show-view')
+            modalPreview.style.display = 'block';
+            modalPreview.classList.toggle('show')
+            modalPreview.removeAttribute('aria-hidden')
+            modalPreview.setAttribute('aria-modal','true')
+            modalPreview.setAttribute('role','dialog')
+            console.log(previewSelect);
+            previewCamposView(previewSelect)
+        }
     }
+}
+
+//Cerrar modal
+
+const cerrarModal = (elemento) =>{
+    const modal = document.getElementById(elemento)
+    modal.style.display = 'none';
+    modal.classList.toggle('show')
+    modal.removeAttribute('aria-modal')
+    modal.setAttribute('aria-hidden','true')
+    modal.removeAttribute('role')
+}
+
+//Show preview
+
+const previewCamposView = async (pvSelect) => {
+    let count =0
+    trHead.innerHTML = ''
+    tbody.innerHTML = ''
+    const selectViewData = await dbView.selectViewData(pvSelect)
+    console.log(selectViewData);
+    selectViewData.rows.forEach(e => {
+        if (count==0) {
+            Object.keys(e).forEach(el => {
+                trHead.innerHTML += `<th>${el}</th>`
+                console.log(el);
+            })
+            count ++;
+        }
+    });
+    //Esta es la forma en la que encontre como recorrer un JSON en internet
+
+    selectViewData.rows.forEach(function (item) {
+        console.log(item);
+        let campo = "<tr>"
+        Object.keys(item).forEach(function (key) {
+            campo += `<td>${item[key]}</td>`
+            console.log(key + ': ' + item[key])
+        })
+        campo += "</tr>"
+        tbody.innerHTML += `${campo}`
+    })
+
+    //Esta es otra forma de recorrer un JSON que cree examinando el codigo de arriba
+
+    selectViewData.rows.forEach(e => {
+        let campo = "<tr>"
+        Object.keys(e).forEach(el => {
+            campo += `<td>${e[el]}</td>`
+            console.log(el);
+        })
+        campo += "</tr>"
+    });
+}
+
+btnPreview.addEventListener('click', e => {
+    obtenerDatos(false)
+})
+
+btnCreateView.addEventListener('click', e => {
+    obtenerDatos(true)
+})
+
+btnCreateViewSelect.addEventListener('click', e => {
+    if (queryCreateView!="") {
+        console.log(queryCreateView);
+        dbView.consult(queryCreateView)
+        cerrarModal('show-view')
+    }else{
+        Toast.fire({
+            icon: 'info',
+            title: 'Llene los campos necesarios',
+            background: 'FFFF',
+            width: 420,
+            timer: 4000,
+        })
+    }
+})
+
+//Cerrar modal view
+
+closeModalView.addEventListener('click',e =>{
+    cerrarModal('show-view')
 })
 
 const showViews = async () => {

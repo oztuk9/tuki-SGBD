@@ -68,7 +68,7 @@ tr:hover td {
 
 .input-campo {
   border-radius: 10px;
-  border: 2px solid #afb4b6;
+  border: 2px solid rgb(175, 180, 182);
   width: 120px;
 }
 
@@ -84,6 +84,6 @@ tr:hover td {
 
 .select-foreign-key {
   border-radius: 10px;
-  border: 2px solid #afb4b6;
+  border: 2px solid rgb(175, 180, 182);
   width: 250px;
 }/*# sourceMappingURL=editar_tablas.css.map */
