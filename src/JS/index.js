@@ -2,6 +2,7 @@ const connection = require('../connection');
 const dbIndex = require('../SQL/dbIndex')
 const dbTablas = require('../SQL/dbTablas')
 const storage = require('../JS/local')
+const backup = require('../JS/backup')
 
 /*Elementos*/
 
@@ -17,6 +18,7 @@ const divNameTable = document.querySelector(".div-tables")
 
 const btnCreateDB = document.getElementById('btn-create-database');
 const btnDeleteDB = document.getElementById('deleteDB');
+const btnBackUpDB = document.getElementById('backUpDB')
 
 /*Inputs*/
 
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', e => {
          encabezado();
          showTables();
          showViews();
+         showTriggers();
          let DBselected = {
             db: storage.getStorage("DBselected").db,
             online: false
@@ -84,6 +87,7 @@ divDB.addEventListener('click', e => {
       encabezado();
       showTables();
       showViews();
+      showTriggers();
    } else {
       console.log("No se a seleccionado una base de datos");
    }
@@ -232,3 +236,7 @@ const eliminarTabla = (tabla) => {
    query = `DROP TABLE IF EXISTS ${tabla} CASCADE`;
    dbTablas.DROPTables(query, tabla)
 }
+
+btnBackUpDB.addEventListener('click',e=>{
+   backup.backup()
+})
