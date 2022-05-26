@@ -25,6 +25,14 @@
         </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="usuarios-tab" data-bs-toggle="tab" data-bs-target="#usuarios" type="button"
+                    role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="triggers-tab" data-bs-toggle="tab" data-bs-target="#triggers" type="button"
+                    role="tab" aria-controls="triiggers" aria-selected="false">Triggers</button>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="views-tab" data-bs-toggle="tab" data-bs-target="#views" type="button"
                     role="tab" aria-controls="views" aria-selected="false">Views</button>
             </li>
@@ -72,13 +80,49 @@
     </div>
 
     <div class="tab-content div-no-visible" id="myTabContent">
+
+        <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="div-delete-db">
+                <span>Crear usuario</span>
+                <button id="crearUsuario" class="btn btn-primary crud-general" data-bs-toggle="modal"
+                    data-bs-target="#new-usuario">Crear</button>
+            </div>
+            <div class="div-style">
+                <span>Usuarios</span>
+                <div id="div-usuarios">
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="triggers" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="div-trigger">
+                <div class="div-option-triggers">
+                    <span>Crear Trigger</span>
+                    <button id="createTrigger" class="btn btn-primary crud-general" data-bs-toggle="modal"
+                        data-bs-target="#new-trigger">Crear</button>
+                </div>
+                <div class="div-option-triggers">
+                    <span>Crear Trigger Function</span>
+                    <button id="createFunctionTrigger" class="btn btn-primary crud-general" data-bs-toggle="modal"
+                        data-bs-target="#new-function-trigger">Crear</button>
+                </div>
+            </div>
+            <div class="div-style">
+                <span>Triggers</span>
+                <div id="div-triggers">
+                </div>
+            </div>
+        </div>
         <div class="tab-pane fade" id="views" role="tabpanel" aria-labelledby="profile-tab">
             <div class="div-delete-db">
                 <span>Crear View</span>
-                <button id="createView" class="btn btn-primary crud-general" data-bs-toggle="modal" data-bs-target="#new-view">Crear</button>
+                <button id="createView" class="btn btn-primary crud-general" data-bs-toggle="modal"
+                    data-bs-target="#new-view">Crear</button>
             </div>
-            <div id="div-views">
+            <div class="div-style">
                 <span>Views</span>
+                <div id="div-views">
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="tablas" role="tabpanel" aria-labelledby="home-tab">
@@ -100,6 +144,10 @@
             <div class="div-delete-db">
                 <span>Eliminar base de datos</span>
                 <button id="deleteDB" class="btn btn-danger crud-general">Eliminar</button>
+            </div>
+            <div class="div-delete-db">
+                <span>Respaldo</span>
+                <button id="backUpDB" class="btn btn-primary crud-general">Crear</button>
             </div>
         </div>
     </div>
@@ -157,11 +205,15 @@
                             <select id="selectCampoWhere" class="input-data"></select>
                             <select id="selectOperadorRelacional" class="input-data">
                                 <option value="=">=</option>
-                                <option value="<>"><></option>
+                                <option value="<>">
+                                    <>
+                                </option>
                                 <option value=">">></option>
-                                <option value="<"><</option>
+                                <option value="<">
+                                    << /option>
                                 <option value=">=">>=</option>
-                                <option value="<="><=</option>
+                                <option value="<=">
+                                    <=< /option>
                             </select>
                             <input type="text" id="inputCondicionView" class="input-data">
                         </div>
@@ -176,7 +228,7 @@
         </div>
     </div>
 
-    
+
     <div class="modal fade " id="show-view" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -202,12 +254,139 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade " id="new-trigger" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo trigger</h5>
+                    <button type="button" id="closeModalTrigger" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class=" modal-body">
+                    <form>
+                        <div class="div-name-trigger">
+                            <span>Nombre</span><input type="text" id="nombreTrigger" class="input-data">
+                        </div>
+                        <select name="" id="selectTime" class="input-data">
+                            <option value="AFTER">AFTER</option>
+                            <option value="BEFORE">BEFORE</option>
+                        </select>
+                        <select name="" id="selectOperation" class="input-data">
+                            <option value="INSERT">INSERT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="UPDATE">UPDATE</option>
+                        </select>
+                        <span>On:</span>
+                        <select name="" id="selectDB" class="input-data"></select>
+                        <span>FOR EACH ROW EXECUTE PROCEDURE</span>
+                        <select name="" id="selectFunction" class="input-data"></select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-create-trigger" type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        data-bs-dismiss="modal" aria-label="Close">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade " id="new-usuario" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear usuario</h5>
+                    <button type="button" id="closeModalUsuario" class="btn-close btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class=" modal-body">
+                    <form class="usuario_permisos">
+                        <div  class="row-privilegios">
+                            <span class="spawn-privilegios">Nombre:</span><input type="text" id="userName" class="input-data">
+                        </div>
+                        <div  class="row-privilegios">
+                            <span class="spawn-privilegios">Contraseña:</span><input type="password" id="userPassword" class="input-data">
+                        </div>
+                        <span>Privilegios:</span>
+                            <div class="row-privilegios">
+                                <span class="spawn-privilegios">Super usuario</span> 
+                                <label class="switch">
+                                    <input id="superUser" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        <div>
+                            <div class="row-privilegios">
+                                <span class="spawn-privilegios">Crear bases de datos</span>
+                                <label class="switch">
+                                    <input id="userCreateDataBase" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div> 
+                        <div>
+                            <div class="row-privilegios">
+                                <span class="spawn-privilegios">Crear roles</span>
+                                <label class="switch">
+                                    <input id="userCreateRols" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div> 
+                        <div>
+                            <div class="row-privilegios">
+                                <span class="spawn-privilegios">Login</span>
+                                <label class="switch">
+                                    <input id="userLogin" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCreateUser" type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        data-bs-dismiss="modal" aria-label="Close">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade " id="new-function-trigger" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva funcion trigger</h5>
+                <button type="button" id="closeModalTrigger" class="btn-close btn-danger" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class=" modal-body">
+                <form>
+                    <div>
+                        <span>Nombre:</span><input type="text" id="nombreFuncionTrigger" class="input-data">
+                    </div>
+                    <div>
+                        <span>Sentencia:</span> <textarea id="sentenciaTrigger" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCreateFunctionTrigger" type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    data-bs-dismiss="modal" aria-label="Close">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
     <!--Sripts -->
 
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../JS/sweetalert2.js"></script>
     <script src="../JS/index.js"></script>
     <script src="../JS/views.js"></script>
+    <script src="../JS/triggers.js"></script>
+    <script src="../JS/usuarios.js"></script>
 </body>
 
 </html>

@@ -22,6 +22,7 @@ const btnCreateView = document.getElementById('btn-create-view')
 const btnCreateViewSelect= document.getElementById('btn-create-view-select')
 const btnPreview = document.getElementById('btn-preview')
 const closeModalView = document.getElementById('closeModalView')
+const closeModalTrigger = document.getElementById('closeModalTrigger')
 
 /*Variables*/
 const trHead = document.getElementById('trHead')
@@ -255,3 +256,8 @@ const eliminarViews = (tabla) => {
     query = `DROP VIEW IF EXISTS ${tabla}`;
     dbView.DROPViews(query, tabla)
 }
+
+/*Cerrar modal trigger*/
+closeModalTrigger.addEventListener('click', e => {
+
+})
